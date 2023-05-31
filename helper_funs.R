@@ -4,6 +4,19 @@ VB_style <- function(msg = 'Hello', style="font-size: 100%;"){
 }
 
 
+#### colors -----------------
+colors_cnb <- function () 
+{
+  color_codes <- c(rgb(36, 38, 169, maxColorValue = 256), 
+                   rgb(213, 43, 30, maxColorValue = 256), rgb(255, 187, 
+                                                              0, maxColorValue = 256), rgb(154, 205, 50, maxColorValue = 256), 
+                   rgb(0, 206, 209, maxColorValue = 256), rgb(108, 111, 
+                                                              112, maxColorValue = 256), rgb(138, 43, 226, maxColorValue = 256), 
+                   rgb(157, 171, 226, maxColorValue = 256), rgb(255, 99, 
+                                                                71, maxColorValue = 256), rgb(46, 167, 84, maxColorValue = 256))
+  return(color_codes)
+}
+
 
 ### CAGR function------------------
 CAGR <- 

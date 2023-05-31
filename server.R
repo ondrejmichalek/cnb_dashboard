@@ -62,25 +62,26 @@ server <-
     tmp_dtf <- pr_p %>%
       pivot_longer(-date, names_to = "id") %>% 
       left_join(labels, by = "id") %>% 
-      group_by(id) %>% 
+      group_by(label) %>% 
       arrange(date) %>% 
       mutate(yoy = value/lag(value, 12)*100-100,
-             mom = value/lag(value, 1)*100-100) 
+             mom = value/lag(value, 1)*100-100)
   
 
         
     
 
     output$pr_line_mom <- renderHighchart({
-      hchart(tmp_dtf %>% filter(id == input$select_industry), "line", 
-             hcaes(x = date, y = yoy))})
+      # highchart() %>%
+      hchart(tmp_dtf %>% filter(label %in% input$select_industry), "line", 
+             hcaes(x = date, y = mom, group = label))}) 
     
     output$pr_line_mom2 <- renderHighchart({
       highchart() %>%
-        # hc_exporting(enabled = TRUE, formAttributes = list(target = "_blank")) %>%
-        hc_chart(type = 'line') %>%
-        hc_add_series(tmp_dtf$mom) %>% 
-        hc_xAxis( categories = unique(year(tmp_dtf$date)) )
+        hc_exporting(enabled = TRUE, formAttributes = list(target = "_blank")) %>%
+        # hc_chart(type = 'line') %>%
+        hc_add_series(data = tmp_dtf %>% filter(label %in% input$select_industry),
+                      hcaes(x = date, y = mom, group = label), type = "line")
                       })
 
     # # 2.1 Total Trade balance a line chart  -----------------------------------------------------------------

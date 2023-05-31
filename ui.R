@@ -297,12 +297,13 @@ body <- dashboardBody(
              ## 1.2 Time serise plot ----------------------------------------
              h2(paste0("Meziměsíční a mezirční změny jednotlivých odvětví")),
              selectizeInput(inputId = "select_industry",
-                            "Select or search for one or multiple markets", 
-                            choices =  unique(labels$id), 
-                            selected = "pr",  width = "200px",
-                            multiple = F),
+                            "Zvolte až 5 odvětví", 
+                            choices =  unique(labels$label), 
+                            selected = NULL,  width = 1000, 
+                            multiple = T,
+                            options = list(maxItems = 5, plugins= list('remove_button'))),
              
-             h2(paste0("New Zealand trade over the past 20 years")),
+             # h2(paste0("New Zealand trade over the past 20 years")),
              fluidRow( column( width = 6,h4("Goods and services trade", align = 'center'), highchartOutput('pr_line_mom') ),
                        column( width = 6,h4("Goods and services trade", align = 'center'), highchartOutput('pr_line_mom2') ))
              # 
