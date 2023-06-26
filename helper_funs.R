@@ -31,6 +31,160 @@ GetColorHexAndDecimal <- function(color)
   sprintf("#%02X%02X%02X %3d %3d %3d", c[1],c[2],c[3], c[1], c[2], c[3])
 }
 
+
+
+## cnb theme--------------- 
+hc_theme_cnb <- function(...) {
+  theme <-
+    list(
+      colors = c("#E10033", "#000000", "#767676", "#E4E4E4"),
+      chart = list(
+        backgroundColor = "transparent",
+        style = list(
+          fontFamily = "Arial",
+          color = "#000000"
+        )
+      ),
+      title = list(
+        align = "left",
+        style = list(
+          fontFamily = "Arial",
+          color = "#000000",
+          fontWeight = "bold"
+        )
+      ),
+      subtitle = list(
+        align = "left",
+        style = list(
+          fontFamily = "Arial",
+          color = "#000000",
+          fontWeight = "bold"
+        )
+      ),
+      xAxis = list(
+        lineColor = "#000000",
+        lineWidth = 2,
+        tickColor = "#000000",
+        tickWidth = 2,
+        gridLineWidth = 2,
+        gridLineColor = "#F3F3F3",
+        labels = list(
+          style = list(
+            color = "black"
+          )
+        ),
+        title = list(
+          style = list(
+            color = "black"
+          )
+        )
+      ),
+      yAxis = list(
+        opposite = TRUE,
+        # gridLineDashStyle = "Dot",
+        gridLineWidth = 2,
+        gridLineColor = "#F3F3F3",
+        lineColor = "#CEC6B9",
+        minorGridLineColor = "#CEC6B9",
+        labels = list(
+          align = "left",
+          style = list(
+            color = "black"
+          ),
+          x = 0,
+          y = -2
+        ),
+        tickLength = 0,
+        tickColor = "#CEC6B9",
+        tickWidth = 1,
+        title = list(
+          style = list(
+            color = "black"
+          )
+        )
+      ),
+      tooltip = list(
+        backgroundColor = "#FFFFFF",
+        borderColor = "#76c0c1",
+        style = list(
+          color = "#000000"
+        )
+      ),
+      legend = list(
+        layout = "horizontal",
+        align = "left",
+        verticalAlign = "bottom",
+        itemStyle = list(
+          color = "#3C3C3C"
+        ),
+        itemHiddenStyle = list(
+          color = "#606063"
+        )
+      ),
+      credits = list(
+        style = list(
+          color = "#666"
+        )
+      ),
+      labels = list(
+        style = list(
+          color = "#D7D7D8"
+        )
+      ),
+      drilldown = list(
+        activeAxisLabelStyle = list(
+          color = "#F0F0F3"
+        ),
+        activeDataLabelStyle = list(
+          color = "#F0F0F3"
+        )
+      ),
+      navigation = list(
+        buttonOptions = list(
+          symbolStroke = "#DDDDDD",
+          theme = list(
+            fill = "#505053"
+          )
+        )
+      ),
+      legendBackgroundColor = "rgba(0, 0, 0, 0.5)",
+      background2 = "#505053",
+      dataLabelsColor = "#B0B0B3",
+      textColor = "#C0C0C0",
+      contrastTextColor = "#F0F0F3",
+      maskColor = "rgba(255,255,255,0.3)"
+    )
+  
+  theme <- structure(theme, class = "hc_theme")
+  
+  if (length(list(...)) > 0) {
+    theme <- hc_theme_merge(
+      theme,
+      hc_theme(...)
+    )
+  }
+  
+  theme
+}
+
+# Ekonomicka aktivita - uvod
+
+ea_uvod <- function(){
+  fluidRow(
+    h1(paste0("Ekonomická aktivita - výhled pro ", format(max_date_ea, format = "%q.Q %Y") ),
+       style = "color: #2426A8"),
+    #tags$ol(
+    tags$li("Nowcastovací modely v prùmìru ukazují, že HDP se zmìní o... Pøibližná stagnace ekonomiky ", 
+             tags$a(tags$i("BPM6 Quarterly, Balance of payments major components (Qrtly-Mar/Jun/Sep/Dec)"),
+                    href = "http://archive.stats.govt.nz/infoshare/SelectVariables.aspx?pxID=aa7f4009-2651-404c-b3b6-e24ea781d803",
+                    target = "_blank"), 
+             ", a table under Economic indicators and Balance of Payments - BOP from Inforshare Statistics New Zealand."
+    ))}
+
+
+
+
+
 ## how to text for commodity intelligence report --------------
 howto_ci <- function(){
   fluidRow(
